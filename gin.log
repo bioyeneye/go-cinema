@@ -1,0 +1,12 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> main.main.func1 (6 handlers)
+[GIN-debug] POST   /token                    --> github.com/bioyeneye/rest-gin-api/routes.SetAuthorizationRoutes.func1 (6 handlers)
+[GIN-debug] GET    /v1/api/videos            --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func1 (7 handlers)
+[GIN-debug] GET    /v1/api/videos/:id        --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func2 (7 handlers)
+[GIN-debug] POST   /v1/api/videos            --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func3 (7 handlers)
+[GIN-debug] Listening and serving HTTP on :8000
+::1 - [Tue, 26 May 2020 13:49:30 WAT] GET /token 404 432.518µs
+::1 - [Tue, 26 May 2020 13:49:34 WAT] POST /token 200 1.254771ms
