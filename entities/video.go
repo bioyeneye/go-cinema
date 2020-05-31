@@ -1,4 +1,4 @@
-package entity
+package entities
 
 type Video struct {
 	Id 			int		`json:"id" binding:"required"`

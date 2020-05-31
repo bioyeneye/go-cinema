@@ -3,10 +3,10 @@
  - using code:	gin.SetMode(gin.ReleaseMode)
 
 [GIN-debug] GET    /test                     --> main.main.func1 (6 handlers)
-[GIN-debug] POST   /token                    --> github.com/bioyeneye/rest-gin-api/routes.SetAuthorizationRoutes.func1 (6 handlers)
+[GIN-debug] POST   /token                    --> github.com/bioyeneye/rest-gin-api/routes.SetAuthorizationRoutes.func1 (7 handlers)
+[GIN-debug] GET    /currentuser              --> github.com/bioyeneye/rest-gin-api/routes.SetAuthorizationRoutes.func2 (7 handlers)
 [GIN-debug] GET    /v1/api/videos            --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func1 (7 handlers)
 [GIN-debug] GET    /v1/api/videos/:id        --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func2 (7 handlers)
 [GIN-debug] POST   /v1/api/videos            --> github.com/bioyeneye/rest-gin-api/routes.SetVideoRoutes.func3 (7 handlers)
 [GIN-debug] Listening and serving HTTP on :8000
-::1 - [Tue, 26 May 2020 13:49:30 WAT] GET /token 404 432.518µs
-::1 - [Tue, 26 May 2020 13:49:34 WAT] POST /token 200 1.254771ms
+::1 - [Sun, 31 May 2020 08:52:31 WAT] GET /currentuserjjj 404 600.012µs

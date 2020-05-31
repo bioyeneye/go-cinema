@@ -2,7 +2,7 @@ package controller
 
 import (
 	controllerinterface "github.com/bioyeneye/rest-gin-api/controller/interfaces"
-	"github.com/bioyeneye/rest-gin-api/entity"
+	"github.com/bioyeneye/rest-gin-api/entities"
 	"github.com/bioyeneye/rest-gin-api/service"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -20,11 +20,12 @@ func NewVideoController(service service.IVideoService) controllerinterface.IVide
 	}
 }
 
-func (videoController *VideoController) GetVideos() []entity.Video {
+func (videoController *VideoController) GetVideos() []entities.Video {
 	return videoController.service.FindAll()
 }
 
-func (videoController *VideoController) GetVideo(context *gin.Context) entity.Video {
+func (videoController *VideoController) GetVideo(context *gin.Context) entities.Video {
+
 	idparam := context.Param("id")
 
 	//firstname := context.DefaultQuery("name", "name")
@@ -33,14 +34,14 @@ func (videoController *VideoController) GetVideo(context *gin.Context) entity.Vi
 
 
 	if err != nil {
-		return entity.Video{}
+		return entities.Video{}
 	}
 
 	videos := videoController.service.FindAll()
 	log.Println(id, idparam, videos)
 
 	if videos == nil{
-		return entity.Video{}
+		return entities.Video{}
 	}
 
 	videoIndex := sort.Search(len(videos), func(i int) bool {
@@ -50,14 +51,14 @@ func (videoController *VideoController) GetVideo(context *gin.Context) entity.Vi
 	log.Println(id, idparam, videos, videoIndex)
 
 	if videoIndex >= len(videos) {
-		return entity.Video{}
+		return entities.Video{}
 	}
 
 	return videos[videoIndex]
 }
 
 func (videoController *VideoController) Post(context *gin.Context) controllerinterface.VideoApiResponse {
-	var video entity.Video
+	var video entities.Video
 	err := context.ShouldBindJSON(&video)
 
 
@@ -67,7 +68,7 @@ func (videoController *VideoController) Post(context *gin.Context) controllerint
 		//context.Writer.Write([]byte(`{"error": "Error unmarshalling the post"}`))
 		return controllerinterface.VideoApiResponse{
 			Error:   err,
-			Data:    entity.Video{},
+			Data:    entities.Video{},
 			Message: "Error with validation",
 		}
 	}
