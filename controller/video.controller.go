@@ -5,10 +5,7 @@ import (
 	"github.com/bioyeneye/rest-gin-api/entities"
 	"github.com/bioyeneye/rest-gin-api/service"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
-	"sort"
-	"strconv"
 )
 
 type VideoController struct {
@@ -57,7 +54,7 @@ func (videoController *VideoController) GetVideos() []entities.Video {
 
 func (videoController *VideoController) GetVideo(context *gin.Context) entities.Video {
 
-	idparam := context.Param("id")
+	/*idparam := context.Param("id")
 
 	//firstname := context.DefaultQuery("name", "name")
 
@@ -82,9 +79,11 @@ func (videoController *VideoController) GetVideo(context *gin.Context) entities.
 
 	if videoIndex >= len(videos) {
 		return entities.Video{}
-	}
+	}*/
 
-	return videos[videoIndex]
+	//return videos[videoIndex]
+
+	return entities.Video{}
 }
 
 func (videoController *VideoController) Post(context *gin.Context) controllerinterface.VideoApiResponse {

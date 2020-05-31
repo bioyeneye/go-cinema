@@ -3,13 +3,12 @@ package main
 import (
 	"github.com/bioyeneye/rest-gin-api/controller"
 	"github.com/bioyeneye/rest-gin-api/core/middlewares"
-	"github.com/bioyeneye/rest-gin-api/core/utilities"
+	"github.com/bioyeneye/rest-gin-api/entities"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	gindump "github.com/tpkeeper/gin-dump"
 	"io"
 	"log"
-	"net/http"
 	"os"
 )
 
@@ -26,13 +25,10 @@ func init() {
 
 func main() {
 	const port string = ":8000"
-
-	//configure db
-	dbconfig := utilities.NewDatabaseConfig()
-	log.Println(dbconfig.Database)
-
 	setupLogOutput()
 
+	//configure db
+	db := entities.SetupModels()
 
 	server := gin.New()
 	server.Use(
@@ -42,17 +38,9 @@ func main() {
 		middlewares.ContentTypeMiddleware(),
 		gindump.Dump())
 
-	server.GET("/test", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Work !",
-		})
-	})
 
-	controller.InitApplicationRoute(server)
 
-	server.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{"code": "LOST-NOT-FOUND", "message": "I think you are lost, kindly re-route your request rightly MY-GUY."})
-	})
+	controller.InitApplication(server, db)
 
 	//port := os.Getenv("PORT")
 

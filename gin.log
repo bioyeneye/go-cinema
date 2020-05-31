@@ -2,15 +2,3 @@
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
 
-[GIN-debug] GET    /test                     --> main.main.func1 (6 handlers)
-[GIN-debug] POST   /api/v1/authorize/token   --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitAuthorizationRoutes.func1 (6 handlers)
-[GIN-debug] GET    /api/v1/authorize/currentuser --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitAuthorizationRoutes.func2 (6 handlers)
-[GIN-debug] GET    /api/v1/videos            --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func1 (7 handlers)
-[GIN-debug] GET    /api/v1/videos/:id        --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func2 (7 handlers)
-[GIN-debug] POST   /api/v1/videos            --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func3 (7 handlers)
-[GIN-debug] Listening and serving HTTP on :8000
-::1 - [Sun, 31 May 2020 16:27:02 WAT] GET /v1/api/videos 404 745.655µs
-::1 - [Sun, 31 May 2020 16:27:03 WAT] GET /v1/api/videos 404 822.131µs
-::1 - [Sun, 31 May 2020 17:02:48 WAT] GET /api/v1/videos 200 344.019µs
-::1 - [Sun, 31 May 2020 17:04:05 WAT] POST /api/v1/videos 201 11.598442ms
-::1 - [Sun, 31 May 2020 17:04:09 WAT] GET /api/v1/videos 200 2.481613ms
