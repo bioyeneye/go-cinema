@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/bioyeneye/rest-gin-api/controller"
 	"github.com/bioyeneye/rest-gin-api/core/middlewares"
 	"github.com/bioyeneye/rest-gin-api/core/utilities"
-	"github.com/bioyeneye/rest-gin-api/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	gindump "github.com/tpkeeper/gin-dump"
@@ -40,7 +40,6 @@ func main() {
 		middlewares.Logger(),
 		middlewares.CORSMiddleware(),
 		middlewares.ContentTypeMiddleware(),
-		//middlewares.BasicAuthentication(),
 		gindump.Dump())
 
 	server.GET("/test", func(context *gin.Context) {
@@ -49,12 +48,7 @@ func main() {
 		})
 	})
 
-	noAuthorizeGroup := server.Group("", middlewares.AuthorizeMiddleware())
-	routes.SetAuthorizationRoutes(noAuthorizeGroup)
-
-	//remove for routes that don't need to be authorized
-	version1Api := server.Group("/v1/api", middlewares.AuthorizeMiddleware())
-	routes.SetVideoRoutes(version1Api)
+	controller.InitApplicationRoute(server)
 
 	server.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"code": "LOST-NOT-FOUND", "message": "I think you are lost, kindly re-route your request rightly MY-GUY."})

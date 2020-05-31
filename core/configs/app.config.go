@@ -1,5 +1,8 @@
 package configs
 
+const API_URL_SUFFIX = "/api/v1"
+
+
 const ApplicationUserKey = "applicationUserKey"
 const JWTSecretKey = "JWT_SECRET"
 const JWTTokenExpiresInKey = "JWT_TOKEN_EXPIRES_IN"
