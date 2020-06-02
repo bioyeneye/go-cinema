@@ -5,19 +5,27 @@ import (
 	"crypto/cipher"
 	"encoding/base64"
 	"golang.org/x/crypto/bcrypt"
+	"log"
 )
 
-//import
 
-func Hash(password string) ([]byte, error) {
-
-	return bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+// Method to hash value
+// 	cost = bcrypt.DefaultCost
+func Hash(password string, cost int) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), cost)
+	return string(hash), err
 }
 
-func VerifyPassword(hashedPassword, password string) error {
+func VerifyHash(hashedValue string, password string) bool {
 
-	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	err := bcrypt.CompareHashAndPassword([]byte(hashedValue), []byte(password))
 
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+
+	return true
 }
 
 var initVector = []byte{35, 46, 57, 24, 85, 35, 24, 74, 87, 35, 88, 98, 66, 32, 14, 05}

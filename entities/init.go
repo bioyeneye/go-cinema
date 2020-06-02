@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"github.com/bioyeneye/rest-gin-api/core/utilities"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
+
 func SetupModels() *gorm.DB {
 	dbConfiguration := utilities.NewDatabaseConfig()
 

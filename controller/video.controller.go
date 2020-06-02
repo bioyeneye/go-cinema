@@ -13,12 +13,12 @@ type VideoController struct {
 }
 
 func (api *APIRoutes) InitVideoRoutes() {
-	var videoService = service.New()
+	var videoService = service.New(api.DB)
 	var videoController = NewVideoController(videoService)
 
 	api.BaseRoutes.Video.GET("", func(context *gin.Context) {
 		context.JSON(http.StatusOK, videoController.GetVideos())
-	},)
+	})
 
 	api.BaseRoutes.Video.GET("/:id", func(context *gin.Context) {
 		context.JSON(http.StatusOK, videoController.GetVideo(context))
@@ -49,7 +49,8 @@ func NewVideoController(service service.IVideoService) controllerinterface.IVide
 }
 
 func (videoController *VideoController) GetVideos() []entities.Video {
-	return videoController.service.FindAll()
+	videos := videoController.service.FindAll()
+	return videos
 }
 
 func (videoController *VideoController) GetVideo(context *gin.Context) entities.Video {
@@ -100,10 +101,10 @@ func (videoController *VideoController) Post(context *gin.Context) controllerint
 		}
 	}
 
-	videoController.service.Save(video)
+	savedVideo := videoController.service.Save(video)
 	return controllerinterface.VideoApiResponse{
 		Error:   nil,
-		Data:    video,
+		Data:    savedVideo,
 		Message: "Videos created successfully",
 	}
 }

@@ -2,3 +2,10 @@
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
 
+[GIN-debug] GET    /test                     --> github.com/bioyeneye/rest-gin-api/controller.InitApplication.func1 (6 handlers)
+[GIN-debug] POST   /api/v1/authorize/token   --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitAuthorizationRoutes.func1 (6 handlers)
+[GIN-debug] GET    /api/v1/authorize/currentuser --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitAuthorizationRoutes.func2 (6 handlers)
+[GIN-debug] GET    /api/v1/videos            --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func1 (7 handlers)
+[GIN-debug] GET    /api/v1/videos/:id        --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func2 (7 handlers)
+[GIN-debug] POST   /api/v1/videos            --> github.com/bioyeneye/rest-gin-api/controller.(*APIRoutes).InitVideoRoutes.func3 (7 handlers)
+[GIN-debug] Listening and serving HTTP on :8000
