@@ -13,7 +13,7 @@ type VideoController struct {
 }
 
 func (api *APIRoutes) InitVideoRoutes() {
-	var videoService = service.New(api.DB)
+	var videoService = service.NewVideoService(api.DB)
 	var videoController = NewVideoController(videoService)
 
 	api.BaseRoutes.Video.GET("", func(context *gin.Context) {

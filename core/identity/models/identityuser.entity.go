@@ -12,7 +12,7 @@ type IdentityUser struct {
 	DeletedAt 				*time.Time `sql:"index"`
 
 	Email                	string `gorm:"type:varchar(100);unique_index"`
-	NormalizedEmail                	string `gorm:"type:varchar(100);unique_index"`
+	NormalizedEmail         string `gorm:"type:varchar(100);unique_index"`
 	EmailConfirmed       	bool
 	PasswordHash         	string
 	ConcurrencyStamp        	string //A random value that must change whenever a user is persisted to the store

@@ -2,7 +2,7 @@ package utilities
 
 import "github.com/bioyeneye/rest-gin-api/core/configs"
 
-type DatabaseConfig struct {
+type DBConfig struct {
 	Host     string
 	Username string
 	Password string
@@ -10,8 +10,12 @@ type DatabaseConfig struct {
 	Port     string
 }
 
-func NewDatabaseConfig() *DatabaseConfig {
-	return &DatabaseConfig{
+func NewDBConfig(host string, username string, password string, name string, port string) *DBConfig {
+	return &DBConfig{Host: host, Username: username, Password: password, Name: name, Port: port}
+}
+
+func NewDBConfigFromEnv() *DBConfig {
+	return &DBConfig{
 		Host:     GetEnv(configs.DatabaseServer, ""),
 		Username: GetEnv(configs.DatabaseUsernameKey, ""),
 		Password: GetEnv(configs.DatabasePasswordKey, ""),

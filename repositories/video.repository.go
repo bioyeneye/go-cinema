@@ -29,17 +29,20 @@ func (repository VideoRepository) Save(video entities.Video) entities.Video {
 
 func (repository VideoRepository) Update(video entities.Video) entities.Video {
 	repository.db.Update(video)
+
 	return video
 }
 
 func (repository VideoRepository) Delete(video entities.Video) bool {
 	repository.db.Delete(video)
+
 	return true
 }
 
 func (repository VideoRepository) All() []entities.Video {
 	var videos []entities.Video
 	repository.db.Set("gorm:auto_preload", true).Find(&videos)
+
 	return videos
 }
 

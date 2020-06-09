@@ -15,7 +15,7 @@ type IVideoService interface {
 	FindAll() []entities.Video
 }
 
-func New(db *gorm.DB) IVideoService {
+func NewVideoService(db *gorm.DB) IVideoService {
 	return &VideoService{
 		videoRepository: repositories.NewVideoRepository(db),
 	}
