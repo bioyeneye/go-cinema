@@ -1,7 +1,7 @@
-package controller
+package controllers
 
 import (
-	"github.com/bioyeneye/rest-gin-api/controller/interfaces"
+	"github.com/bioyeneye/rest-gin-api/controllers/interfaces"
 	"github.com/bioyeneye/rest-gin-api/core/middlewares"
 	"github.com/bioyeneye/rest-gin-api/core/utilities"
 	"github.com/gin-gonic/gin"

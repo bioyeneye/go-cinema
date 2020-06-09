@@ -14,7 +14,7 @@ test:
   stage: test
   image: golang:lastest
   script:
-    - go test service/*.go
+    - go test services/*.go
 
 staging:
   stage: deploy

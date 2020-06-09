@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/bioyeneye/rest-gin-api/controller"
+	"github.com/bioyeneye/rest-gin-api/controllers"
 	"github.com/bioyeneye/rest-gin-api/core/middlewares"
 	"github.com/bioyeneye/rest-gin-api/core/utilities"
-	"github.com/bioyeneye/rest-gin-api/entities"
+	"github.com/bioyeneye/rest-gin-api/db"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	gindump "github.com/tpkeeper/gin-dump"
@@ -33,7 +33,7 @@ func main() {
 	//note: use utiilites NewDBConfig
 	dbConfig := utilities.NewDBConfigFromEnv()
 	dbConString := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable",dbConfig.Host, dbConfig.Port, dbConfig.Username, dbConfig.Name, dbConfig.Password)
-	db, err := entities.SetupDbModels("postgres", dbConString)
+	dbInstance, err := db.SetupDbModels("postgres", dbConString)
 	if err != nil {
 		panic("Failed to connect to database!")
 	}
@@ -46,6 +46,6 @@ func main() {
 		middlewares.ContentTypeMiddleware(),
 		gindump.Dump())
 
-	controller.InitApplication(server, db)
+	controllers.InitApplication(server, dbInstance)
 	_ = server.Run(port)
 }

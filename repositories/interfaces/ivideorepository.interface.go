@@ -1,6 +1,8 @@
 package repositoryinterfaces
 
-import "github.com/bioyeneye/rest-gin-api/entities"
+import (
+	"github.com/bioyeneye/rest-gin-api/db/entities"
+)
 
 type IVideoRepository interface {
 	Find() entities.Video

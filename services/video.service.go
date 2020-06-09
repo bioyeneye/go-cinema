@@ -1,7 +1,7 @@
-package service
+package services
 
 import (
-	"github.com/bioyeneye/rest-gin-api/entities"
+	"github.com/bioyeneye/rest-gin-api/db/entities"
 	"github.com/bioyeneye/rest-gin-api/repositories"
 	repositoryinterfaces "github.com/bioyeneye/rest-gin-api/repositories/interfaces"
 	"github.com/jinzhu/gorm"

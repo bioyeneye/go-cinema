@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/bioyeneye/rest-gin-api/entities"
+	"github.com/bioyeneye/rest-gin-api/db/entities"
 	repositoryinterfaces "github.com/bioyeneye/rest-gin-api/repositories/interfaces"
 	"github.com/jinzhu/gorm"
 	"log"

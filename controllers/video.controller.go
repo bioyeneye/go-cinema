@@ -1,19 +1,19 @@
-package controller
+package controllers
 
 import (
-	controllerinterface "github.com/bioyeneye/rest-gin-api/controller/interfaces"
-	"github.com/bioyeneye/rest-gin-api/entities"
-	"github.com/bioyeneye/rest-gin-api/service"
+	controllerinterface "github.com/bioyeneye/rest-gin-api/controllers/interfaces"
+	"github.com/bioyeneye/rest-gin-api/db/entities"
+	"github.com/bioyeneye/rest-gin-api/services"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type VideoController struct {
-	service service.IVideoService
+	service services.IVideoService
 }
 
 func (api *APIRoutes) InitVideoRoutes() {
-	var videoService = service.NewVideoService(api.DB)
+	var videoService = services.NewVideoService(api.DB)
 	var videoController = NewVideoController(videoService)
 
 	api.BaseRoutes.Video.GET("", func(context *gin.Context) {
@@ -42,7 +42,7 @@ func (api *APIRoutes) InitVideoRoutes() {
 	})
 }
 
-func NewVideoController(service service.IVideoService) controllerinterface.IVideoController {
+func NewVideoController(service services.IVideoService) controllerinterface.IVideoController {
 	return &VideoController{
 		service: service,
 	}
@@ -62,14 +62,14 @@ func (videoController *VideoController) GetVideo(context *gin.Context) entities.
 	id, err := strconv.Atoi(idparam)
 
 	if err != nil {
-		return entities.Video{}
+		return db.Video{}
 	}
 
-	videos := videoController.service.FindAll()
+	videos := videoController.services.FindAll()
 	log.Println(id, idparam, videos)
 
 	if videos == nil {
-		return entities.Video{}
+		return db.Video{}
 	}
 
 	videoIndex := sort.Search(len(videos), func(i int) bool {
@@ -79,7 +79,7 @@ func (videoController *VideoController) GetVideo(context *gin.Context) entities.
 	log.Println(id, idparam, videos, videoIndex)
 
 	if videoIndex >= len(videos) {
-		return entities.Video{}
+		return db.Video{}
 	}*/
 
 	//return videos[videoIndex]

@@ -1,7 +1,7 @@
 package interfaces
 
 import (
-	"github.com/bioyeneye/rest-gin-api/entities"
+	"github.com/bioyeneye/rest-gin-api/db/entities"
 	"github.com/gin-gonic/gin"
 )
 

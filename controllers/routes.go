@@ -1,4 +1,4 @@
-package controller
+package controllers
 
 import (
 	"github.com/bioyeneye/rest-gin-api/core/configs"
@@ -43,7 +43,7 @@ func InitApplication(router *gin.Engine, db *gorm.DB) {
 	api.InitAuthorizationRoutes()
 	api.InitVideoRoutes()
 
-	//service
+	//services
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"code": "LOST-NOT-FOUND", "message": "I think you are lost, kindly re-route your request rightly MY-GUY."})
